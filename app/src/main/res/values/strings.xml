@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Political Preparedness</string>
+    <string name="representativeButton">FIND MY REPRESENTATIVE</string>
+    <string name="upcomingElectionButton">UPCOMING ELECTIONS</string>
+    <string name="SavedElections">SAVED ELECTIONS</string>
+
+</resources>
