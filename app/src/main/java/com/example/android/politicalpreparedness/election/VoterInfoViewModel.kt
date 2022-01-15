@@ -38,15 +38,21 @@ class VoterInfoViewModel(
     private fun getResponseFromVoterInfo(){
         viewModelScope.launch {
 
-        var address = division.country
-        if(division.state.isEmpty())
+        var address = division.country + "/" + division.state
+        if(division.state.isNullOrEmpty())
         {
-            address =division.country + "/state:ks"
+            address =division.country + "/ks"
         }
 
-         _voterInfoResponse.value =    CivicsApi.retrofitService.getVoterInfo(address,electionId)
+            try{
+                _voterInfoResponse.value =    CivicsApi.retrofitService.getVoterInfo(address,electionId)
+                Log.d("myTag","Response : ${_voterInfoResponse.value}")
+            }catch (e : Exception)
+            {
+                Log.d("myTag","Error Occurred : ${e.message}")
+            }
 
-            Log.i("myTag","Response : ${voterInfoResponse.value}")
+
         }
     }
 
