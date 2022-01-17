@@ -31,6 +31,10 @@ class ElectionsFragment: Fragment() {
                 _viewModel.displayVoterInfoDetails(it)
         })
 
+        binding.followedElectionRecylerView.adapter = ElectionListAdapter(ElectionListAdapter.ElectionListener{
+            _viewModel.displayVoterInfoDetails(it)
+        })
+
         _viewModel.electionList.observe(viewLifecycleOwner, {
             binding.recyclerView.adapter
         })

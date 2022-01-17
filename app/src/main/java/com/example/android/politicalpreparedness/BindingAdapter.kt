@@ -33,3 +33,9 @@ fun bindRecyclerView(recyclerView: RecyclerView,data : List<Election>?){
     val adapter = recyclerView.adapter as ElectionListAdapter
     adapter.submitList(data)
 }
+
+@BindingAdapter("followedListData")
+fun bindFollowedRecyclerView(recyclerView: RecyclerView,data: List<Election>?){
+    val adapter = recyclerView.adapter as ElectionListAdapter
+    adapter.submitList(data)
+}

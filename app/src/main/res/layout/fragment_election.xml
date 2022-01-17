@@ -58,8 +58,9 @@
         <androidx.recyclerview.widget.RecyclerView
             tools:itemCount="5"
             tools:listitem="@layout/listitem"
+            app:followedListData="@{viewModel.followedElectionList}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:id="@+id/savedElectionRecyclerView"
+            android:id="@+id/followedElectionRecylerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginStart="16dp"

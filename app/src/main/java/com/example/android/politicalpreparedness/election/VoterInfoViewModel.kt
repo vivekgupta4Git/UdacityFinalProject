@@ -70,6 +70,8 @@ class VoterInfoViewModel(
             /**
              * I don't know why isEmptyOrNull() not working on state.
              */
+
+
             if(division.state.length <=0 ||division.state==null)        {
             address =division.country + "/ks"
         }

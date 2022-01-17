@@ -1,14 +1,14 @@
 package com.example.android.politicalpreparedness.election
 
+import android.app.Application
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.example.android.politicalpreparedness.database.ElectionDatabase
 import com.example.android.politicalpreparedness.network.CivicsApi
 import com.example.android.politicalpreparedness.network.models.Division
 import com.example.android.politicalpreparedness.network.models.Election
 import com.example.android.politicalpreparedness.network.models.ElectionResponse
+import com.example.android.politicalpreparedness.repository.ElectionRepository
 import kotlinx.coroutines.launch
 
 
@@ -17,8 +17,20 @@ enum class Status{
     ERROR,
     DONE
 }
+enum class Filter{
+    FOLLOWED,
+    ALL
+}
+
 //TODO: Construct ViewModel and provide election datasource
-class ElectionsViewModel: ViewModel() {
+class ElectionsViewModel(application: Application): AndroidViewModel(application) {
+
+    /*
+creating repo
+*/
+    private val database = ElectionDatabase.getInstance(application)
+    private val repo = ElectionRepository(database)
+
 
     //The internal mutablelive data that store the status of the response
     private var _status = MutableLiveData<Status>()
@@ -34,6 +46,13 @@ class ElectionsViewModel: ViewModel() {
     val electionList: LiveData<List<Election>>
     get() = _electionsList
 
+
+    /**
+     * followed election list
+     */
+    private var _followedElectionList = MutableLiveData<List<Election>>()
+    val followedElectionList : LiveData<List<Election>>
+    get() = _followedElectionList
 
    private var _navigateToVoterInfoFragment = MutableLiveData<Election>()
     val navigateToVoterInfoFragment : LiveData<Election>
@@ -60,26 +79,57 @@ class ElectionsViewModel: ViewModel() {
             _status.value = Status.LOADING
      try {
 
-         val response: ElectionResponse =   CivicsApi.retrofitService.getElections()
-         _electionsList.value =   response.elections
+         repo.refreshElections()
          _status.value = Status.DONE
 
-         Log.i("myTag","Status Code : ${_status.value}")
      }  catch (e : Exception)
      {
          _status.value = Status.ERROR
          _electionsList.value = ArrayList()
+         _followedElectionList.value =ArrayList()
      }
         }
 
     }
 
+    /**
+     * making an observer to update recycler view
+     */
+
+    private val electionListObserver = Observer<List<Election>>{
+        _electionsList.value = it
+    }
+
+    private var electionListLiveData : LiveData<List<Election>>
+
+    /**
+     * making an observer to update followed list for recycler view
+     */
+    private val followedElectionListObserver = Observer<List<Election>> {
+        _followedElectionList.value = it
+    }
+
+    private var followedElectionListLiveData : LiveData<List<Election>>
+
+
     /*
     Initializing the list with values
      */
     init {
+        electionListLiveData = repo.getElectionBasedOnFilter(Filter.ALL)
+        electionListLiveData.observeForever(electionListObserver)
+
+        followedElectionListLiveData = repo.getElectionBasedOnFilter(Filter.FOLLOWED)
+        followedElectionListLiveData.observeForever(followedElectionListObserver)
         getElectionResponse()
     }
+
+
+
+
+
+
+
     //TODO: Create val and functions to populate
 // live data for upcoming elections from the API and saved elections from local database
 
