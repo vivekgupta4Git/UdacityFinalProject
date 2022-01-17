@@ -1,8 +1,10 @@
 package com.example.android.politicalpreparedness.network.jsonadapter
 
 import com.example.android.politicalpreparedness.network.models.Division
+import com.example.android.politicalpreparedness.network.models.Election
 import com.squareup.moshi.FromJson
 import com.squareup.moshi.ToJson
+import kotlinx.serialization.json.JsonArray
 
 
 class ElectionAdapter {

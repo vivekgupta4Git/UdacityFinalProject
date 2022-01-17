@@ -4,5 +4,11 @@
     <string name="representativeButton">FIND MY REPRESENTATIVE</string>
     <string name="upcomingElectionButton">UPCOMING ELECTIONS</string>
     <string name="SavedElections">SAVED ELECTIONS</string>
+    <string name="election_information_header">Election Information</string>
+    <string name="voting_location"><a href="%1$s">Voting Locations</a></string>
+    <string name="ballot_information"><a href="%1$s">Ballot Information</a>  </string>
+    <string name="followElection">Follow Election</string>
+    <string name="unfollowElection">Unfollow Election</string>
+
 
 </resources>
