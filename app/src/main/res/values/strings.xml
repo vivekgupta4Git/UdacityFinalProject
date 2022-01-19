@@ -9,6 +9,23 @@
     <string name="ballot_information"><a href="%1$s">Ballot Information</a>  </string>
     <string name="followElection">Follow Election</string>
     <string name="unfollowElection">Unfollow Election</string>
+    <string name="search_title_representative_search">Representative Search</string>
+    <string name="my_representatives">My Representatives</string>
+    <string name="tooltip_address_line_1">Address Line 1</string>
+    <string name="tooltip_address_line_2">Address Line 2</string>
+    <string name="tooltip_city">Enter City</string>
+    <string name="tooltip_enter_state">Choose State</string>
+    <string name="tooltip_pincode">Enter PinCode</string>
+    <string name="find_my_representative">FIND MY REPRESENTATIVE</string>
+    <string name="use_my_location">USE MY LOCATION</string>
+    <string name="permission_required">To use this feature you must enable location permission</string>
+    <string name="ok">OK</string>
+    <string name="representative_title">Rep Title</string>
+    <string name="representative_party">Rep Party</string>
+    <string name="website">"website "</string>
+    <string name="facebook">facebook icon</string>
+    <string name="twitter">twitter icon</string>
+    <string name="representative_name">Rep Name</string>
 
 
 </resources>

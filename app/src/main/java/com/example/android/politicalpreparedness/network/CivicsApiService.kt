@@ -9,6 +9,7 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -46,7 +47,6 @@ private val retrofit = Retrofit.Builder()
  */
 
 interface CivicsApiService {
-    //TODO: Add elections API Call
 
     /*
     Returns a ElectionResponse Object
@@ -56,10 +56,18 @@ interface CivicsApiService {
     @GET("elections")
     suspend fun getElections() : ElectionResponse
 
+
     @GET("voterinfo")
     suspend fun getVoterInfo(@Query ("address") address: String,
         @Query("electionId") electionID : Int
                              ) : VoterInfoResponse
+
+    /**
+     * this url resulted successful response
+     * https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyBMpuRIA_XCRwPrgHPLHMtjmbkPauib9hs&address=%22ks%22
+     * example of address : 345 Park Ave New York NY 10154
+     * Address is must and by default includeOffices is true , so need to add it
+     */
 
     @GET("representatives")
     suspend fun getRepresentatives(@Query("address") address: String) : RepresentativeResponse

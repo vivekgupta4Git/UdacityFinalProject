@@ -16,7 +16,7 @@ fun bindStatus(statusImageView: ImageView, status: Status?) {
     when (status) {
         Status.LOADING -> {
             statusImageView.visibility = View.VISIBLE
-            statusImageView.setImageResource(R.drawable.loading_animation)
+            statusImageView.setImageResource(R.drawable.loading_img)
         }
         Status.ERROR -> {
             statusImageView.visibility = View.VISIBLE
@@ -25,6 +25,7 @@ fun bindStatus(statusImageView: ImageView, status: Status?) {
         Status.DONE -> {
             statusImageView.visibility = View.GONE
         }
+        else -> {}
     }
 }
 

@@ -56,8 +56,8 @@ class VoterInfoViewModel(
 
     /*
     * https://www.googleapis.com/civicinfo/v2/voterinfo?key=AIzaSyBMpuRIA_XCRwPrgHPLHMtjmbkPauib9hs&address=US/state:&electionId=2000
-    * when the state in address field is empty , we get error response, so we need to put some value here , using api guide, putting ks =Kansas city as default
-    * so,
+    * when the state in address field is empty , we get error response, so we need to put some value here ,
+    * using api guide, putting ks =Kansas city as default so,
     * https://www.googleapis.com/civicinfo/v2/voterinfo?key=AIzaSyBMpuRIA_XCRwPrgHPLHMtjmbkPauib9hs&address=US/state:ks&electionId=2000
      */
 
@@ -71,8 +71,7 @@ class VoterInfoViewModel(
              * I don't know why isEmptyOrNull() not working on state.
              */
 
-
-            if(division.state.length <=0 ||division.state==null)        {
+            if(division.state.length <=0 )        {
             address =division.country + "/ks"
         }
 
