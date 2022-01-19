@@ -21,6 +21,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.databinding.FragmentRepresentativeBinding
+import com.example.android.politicalpreparedness.election.Status
 import com.example.android.politicalpreparedness.network.models.Address
 import com.example.android.politicalpreparedness.representative.adapter.RepresentativeListAdapter
 import com.example.android.politicalpreparedness.representative.adapter.setNewValue
@@ -60,6 +61,16 @@ class DetailFragment : Fragment() {
             else
                 Log.i("myTag","Permission : Denied")
         }
+
+        viewModel.status.observe(viewLifecycleOwner, Observer {
+                if(it.ordinal== 1)
+                {
+                    Snackbar.make(binding.root,getString(R.string.error_incorrect_address_message),Snackbar.LENGTH_LONG).show()
+                    viewModel.doneShowingSnackbar()
+                }
+        })
+
+
         val adapter = RepresentativeListAdapter()
 
         binding.representativeRecyclerview.adapter = adapter
@@ -83,8 +94,15 @@ class DetailFragment : Fragment() {
         }
 
         binding.buttonSearch.setOnClickListener {
-            viewModel.addressLiveData.value?.toFormattedString()
-                ?.let { it1 -> viewModel.getRepresentativeList(it1) }
+
+            val address = Address(
+                    binding.addressLine1.text.toString(),
+                    binding.addressLine2.text.toString(),
+                    binding.city.text.toString(),
+                    binding.state.selectedItem.toString(),
+                    binding.zip.text.toString()
+            )
+            viewModel.setAddress(address)
             hideKeyboard()
         }
     }
@@ -96,8 +114,6 @@ class DetailFragment : Fragment() {
               PackageManager.PERMISSION_GRANTED ->{
                   //Permission Granted
                   getLocation()
-          viewModel.addressLiveData.value?.toFormattedString()
-              ?.let { viewModel.getRepresentativeList(it) }
                     hideKeyboard()
 
       }
@@ -148,5 +164,6 @@ class DetailFragment : Fragment() {
         val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(requireView().windowToken, 0)
     }
+
 
 }

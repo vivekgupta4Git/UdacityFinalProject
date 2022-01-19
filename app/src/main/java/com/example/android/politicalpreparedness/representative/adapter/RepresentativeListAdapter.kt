@@ -2,6 +2,7 @@ package com.example.android.politicalpreparedness.representative.adapter
 
 import android.content.Intent
 import android.content.Intent.ACTION_VIEW
+import android.media.Image
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -48,7 +49,7 @@ class RepresentativeViewHolder(val binding: RepresentativelistitemBinding ): Rec
 
     fun bind(item: Representative) {
         binding.representative = item
-        binding.representativePhoto.setImageResource(R.drawable.ic_profile)
+      //  binding.representativePhoto.setImageResource(R.drawable.ic_profile)
 
         item.official.channels?.let { showSocialLinks(it) }
         item.official.urls?.let { showWWWLinks(it) }
@@ -60,9 +61,12 @@ class RepresentativeViewHolder(val binding: RepresentativelistitemBinding ): Rec
     private fun showSocialLinks(channels: List<Channel>) {
         val facebookUrl = getFacebookUrl(channels)
         if (!facebookUrl.isNullOrBlank()) { enableLink(binding.facebookIcon, facebookUrl) }
+        else
+            hide(binding.facebookIcon)
 
         val twitterUrl = getTwitterUrl(channels)
         if (!twitterUrl.isNullOrBlank()) { enableLink(binding.twitterIcon, twitterUrl) }
+        else hide(binding.twitterIcon)
     }
 
     private fun showWWWLinks(urls: List<String>) {
@@ -92,6 +96,9 @@ class RepresentativeViewHolder(val binding: RepresentativelistitemBinding ): Rec
         itemView.context.startActivity(intent)
     }
 
+    private fun hide(view : ImageView){
+        view.visibility = View.INVISIBLE
+    }
 }
 
 

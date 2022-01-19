@@ -26,6 +26,7 @@
     <string name="facebook">facebook icon</string>
     <string name="twitter">twitter icon</string>
     <string name="representative_name">Rep Name</string>
+    <string name="error_incorrect_address_message">Unable to fetch representatives, Check your address</string>
 
 
 </resources>

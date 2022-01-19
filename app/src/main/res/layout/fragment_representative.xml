@@ -14,114 +14,118 @@
 
     <!-- TODO: Add motion scene to hide form on vertical scroll. -->
     <androidx.constraintlayout.motion.widget.MotionLayout
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layoutDescription="@xml/fragment_representative_scene">
 
         <TextView
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:text="@string/search_title_representative_search"
             android:id="@+id/search_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/search_title_representative_search"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:text="@{viewModel.addressLiveData.line1}"
-            android:hint="@string/tooltip_address_line_1"
-            tools:text="@string/tooltip_address_line_1"
-            android:tooltipText="@string/tooltip_address_line_1"
             android:id="@+id/address_line_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autofillHints=""
+            android:hint="@string/tooltip_address_line_1"
             android:inputType="textPostalAddress"
+            android:text="@{viewModel.addressLiveData.line1}"
+            android:tooltipText="@string/tooltip_address_line_1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/search_title" />
+            app:layout_constraintTop_toBottomOf="@id/search_title"
+            tools:text="@string/tooltip_address_line_1" />
 
         <EditText
-            android:text="@{viewModel.addressLiveData.line2}"
-            android:hint="@string/tooltip_address_line_2"
-            tools:text="@string/tooltip_address_line_2"
-            android:tooltipText="@string/tooltip_address_line_2"
             android:id="@+id/address_line_2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:autofillHints=""
+            android:hint="@string/tooltip_address_line_2"
             android:inputType="textPostalAddress"
+            android:text="@{viewModel.addressLiveData.line2}"
+            android:tooltipText="@string/tooltip_address_line_2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/address_line_1" />
+            app:layout_constraintTop_toBottomOf="@id/address_line_1"
+            tools:text="@string/tooltip_address_line_2" />
 
         <EditText
-            android:text="@{viewModel.addressLiveData.city}"
-            android:hint="@string/tooltip_city"
-            tools:text="@string/tooltip_city"
-            android:tooltipText="@string/tooltip_city"
             android:id="@+id/city"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:autofillHints=""
+            android:hint="@string/tooltip_city"
             android:inputType="textPostalAddress"
-            app:layout_constraintStart_toStartOf="parent"
+            android:text="@{viewModel.addressLiveData.city}"
+            android:tooltipText="@string/tooltip_city"
             app:layout_constraintEnd_toStartOf="@id/state"
-            app:layout_constraintTop_toBottomOf="@id/address_line_2" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/address_line_2"
+            tools:text="@string/tooltip_city" />
 
         <Spinner
-            android:entries="@array/states"
-            android:tooltipText="@string/tooltip_enter_state"
             android:id="@+id/state"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:autofillHints=""
+            android:entries="@array/states"
             android:inputType="textPostalAddress"
-            app:layout_constraintStart_toEndOf="@id/city"
+            android:tooltipText="@string/tooltip_enter_state"
+            app:layout_constraintBottom_toBottomOf="@id/city"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/city"
-            app:layout_constraintBottom_toBottomOf="@id/city"/>
+            app:layout_constraintStart_toEndOf="@id/city"
+            app:layout_constraintTop_toTopOf="@id/city" />
 
         <EditText
-            android:text="@{viewModel.addressLiveData.zip}"
-            android:hint="@string/tooltip_pincode"
-            android:tooltipText="@string/tooltip_pincode"
             android:id="@+id/zip"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:autofillHints=""
+            android:hint="@string/tooltip_pincode"
             android:inputType="number"
             android:maxLength="5"
-            app:layout_constraintStart_toStartOf="parent"
+            android:text="@{viewModel.addressLiveData.zip}"
+            android:tooltipText="@string/tooltip_pincode"
             app:layout_constraintEnd_toEndOf="@id/city"
-            app:layout_constraintTop_toBottomOf="@id/city" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/city"
+            tools:ignore="TextContrastCheck" />
 
         <Button
-            android:text="@string/find_my_representative"
             android:id="@+id/button_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/find_my_representative"
             app:layout_constraintTop_toBottomOf="@id/zip" />
 
         <Button
-            android:text="@string/use_my_location"
             android:id="@+id/button_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/use_my_location"
             app:layout_constraintTop_toBottomOf="@id/button_search" />
 
         <TextView
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:text="@string/my_representatives"
             android:id="@+id/representative_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/my_representatives"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/button_location" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/representative_recyclerview"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="0dp"
+            android:layout_margin="20dp"
+            android:layout_marginStart="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/representative_title"
+            motion:layout_editor_absoluteX="157dp"
+            motion:layout_editor_absoluteY="364dp" />
+
         <TextView
             android:id="@+id/list_placeholder"
             android:layout_width="match_parent"
@@ -129,9 +133,11 @@
             android:gravity="center"
             android:textAlignment="center"
             android:visibility="gone"
-            motion:visibilityMode="ignore"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/representative_title"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            motion:visibilityMode="ignore" />
+
+
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>
